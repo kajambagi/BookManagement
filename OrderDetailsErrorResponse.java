@@ -1,8 +1,7 @@
 
-package com.demo.book.exception;
+package com.demo.book.entity;
 import lombok.Data;
 
-@Data
 public class OrderDetailsErrorResponse {
     
 	private int status;
@@ -10,20 +9,33 @@ public class OrderDetailsErrorResponse {
 	private String message;
 	
 	private long timeStamp;
+	
 
-	public void setStatus(int value) {
-		
-		
+	public int getStatus() {
+		return status;
 	}
 
-	public void setMessage(String message2) {
-		
+	public String getMessage() {
+		return message;
 	}
 
-	public void setTimeStamp(long currentTimeMillis) {
-		
-		
+	public long getTimeStamp() {
+		return timeStamp;
 	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setTimeStamp(long timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	
 
 
 }
