@@ -3,6 +3,7 @@ package com.demo.book.entity;
 import java.time.LocalDate;
 
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,10 +42,10 @@ public class Book {
 	LocalDate publishDate;
 	LocalDate lastUpdatedOn;
 	
-	/*@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="category_fk")
 	Category category;
-	*/
+	
 	
 	
 	// Constructors
@@ -113,6 +114,7 @@ public class Book {
 		public void setLastUpdatedOn(LocalDate lastUpdatedOn) {
 			this.lastUpdatedOn = lastUpdatedOn;
 		}
+		
 	/*	public Category getCategory() {
 			return category;
 		}
@@ -121,11 +123,18 @@ public class Book {
 		}
 		*/
 		
-		// toString
+		public Category getCategory() {
+			return category;
+		}
+		public void setCategory(Category category) {
+			this.category = category;
+		}
 		@Override
 		public String toString() {
-			return "Book [bookId=" + bookId + ", title=" + title + ", author=" + author + ", description=" + description + ", isbn=" + isbn + ", price=" + price + ", publishDate="
-					+ publishDate + ", lastUpdatedOn=" + lastUpdatedOn +"]";
+			return "Book [bookId=" + bookId + ", title=" + title + ", author=" + author + ", description=" + description
+					+ ", isbn=" + isbn + ", price=" + price + ", publishDate=" + publishDate + ", lastUpdatedOn="
+					+ lastUpdatedOn + ", category=" + category + "]";
 		}
 		
-}
+		}
+		
