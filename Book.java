@@ -1,9 +1,6 @@
 package com.demo.book.entity;
 
 import java.time.LocalDate;
-
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -46,7 +44,9 @@ public class Book {
 	@JoinColumn(name="category_fk")
 	Category category;
 	
-	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="orderDetails_fk")
+	OrderDetails orderDetails;
 	
 	// Constructors
 		public Book() {}
@@ -129,11 +129,25 @@ public class Book {
 		public void setCategory(Category category) {
 			this.category = category;
 		}
-		@Override
+		
+		
+		public OrderDetails getOrderDetails() {
+			return orderDetails;
+		}
+		public void setOrderDetails(OrderDetails orderDetails) {
+			this.orderDetails = orderDetails;
+		}
+		/*@Override
 		public String toString() {
 			return "Book [bookId=" + bookId + ", title=" + title + ", author=" + author + ", description=" + description
 					+ ", isbn=" + isbn + ", price=" + price + ", publishDate=" + publishDate + ", lastUpdatedOn="
 					+ lastUpdatedOn + ", category=" + category + "]";
+		}*/
+		@Override
+		public String toString() {
+			return "Book [bookId=" + bookId + ", title=" + title + ", author=" + author + ", description=" + description
+					+ ", isbn=" + isbn + ", price=" + price + ", publishDate=" + publishDate + ", lastUpdatedOn="
+					+ lastUpdatedOn + ", category=" + category + ", orderDetails=" + orderDetails + "]";
 		}
 		
 		}
