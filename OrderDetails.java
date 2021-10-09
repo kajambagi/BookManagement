@@ -1,7 +1,6 @@
 package com.demo.book.entity;
 
 import javax.persistence.CascadeType;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,23 +12,53 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Entity
-@Data
 @Table(name="orderDetails")
 public class OrderDetails {
 @Id
 @GeneratedValue
-private int book;
+private int orderDetailId;
 private int quantity;
 private double subTotal;
  
+@JsonIgnore
  @OneToOne(mappedBy="orderDetails",cascade=CascadeType.ALL)
  BookOrder bookOrder;
  
  @JsonIgnore
 	@OneToOne(mappedBy="orderDetails",cascade=CascadeType.ALL)
-	Book book1;
+	Book book;
  
  
+ public int getOrderDetailId() {
+	return orderDetailId;
+}
+
+
+public void setOrderDetailId(int orderDetailId) {
+	this.orderDetailId = orderDetailId;
+}
+
+
+public BookOrder getBookOrder() {
+	return bookOrder;
+}
+
+
+public void setBookOrder(BookOrder bookOrder) {
+	this.bookOrder = bookOrder;
+}
+
+
+public Book getBook() {
+	return book;
+}
+
+
+public void setBook(Book book) {
+	this.book = book;
+}
+
+
 public  int getQuantity() {
 	return quantity;
 }
@@ -51,10 +80,12 @@ public void setQuantity(int quantity) {
 
 @Override
 public String toString() {
-	return "OrderDetails [quantity=" + quantity + ", subTotal=" + subTotal + "]";
+	return "OrderDetails [orderDetailId=" + orderDetailId + ", quantity=" + quantity + ", subTotal=" + subTotal
+			+ ", bookOrder=" + bookOrder + ", book=" + book + ", getOrderDetailId()=" + getOrderDetailId()
+			+ ", getBookOrder()=" + getBookOrder() + ", getBook()=" + getBook() + ", getQuantity()=" + getQuantity()
+			+ ", getSubTotal()=" + getSubTotal() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+			+ ", toString()=" + super.toString() + "]";
 }
-
-
 
 }
 

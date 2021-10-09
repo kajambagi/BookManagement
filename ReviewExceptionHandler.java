@@ -1,18 +1,17 @@
 package com.demo.book.exception;
 
 import org.springframework.http.HttpStatus;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.demo.book.entity.OrderDetailsErrorResponse;
+import com.demo.book.entity.ReviewErrorResponse;
 
 @ControllerAdvice
-public class OrderDetailsExceptionHandler {
+public class ReviewExceptionHandler {
 	@ExceptionHandler
-	public ResponseEntity<OrderDetailsErrorResponse> handleException(OrderDetailsNotFoundException exception) {
-		OrderDetailsErrorResponse error = new OrderDetailsErrorResponse();
+	public ResponseEntity<ReviewErrorResponse> handleException(ReviewNotFoundException exception) {
+		ReviewErrorResponse error = new ReviewErrorResponse();
 		
 		error.setStatus(HttpStatus.NOT_FOUND.value());
 		error.setMessage(exception.getMessage());
@@ -22,8 +21,8 @@ public class OrderDetailsExceptionHandler {
 	}
 
 	@ExceptionHandler
-	public ResponseEntity<OrderDetailsErrorResponse> handleException(OrderDetailsFoundException exception) {
-		OrderDetailsErrorResponse error = new OrderDetailsErrorResponse();
+	public ResponseEntity<ReviewErrorResponse> handleException(ReviewFoundException exception) {
+		ReviewErrorResponse error = new ReviewErrorResponse();
 		
 		error.setStatus(HttpStatus.FOUND.value());
 		error.setMessage(exception.getMessage());

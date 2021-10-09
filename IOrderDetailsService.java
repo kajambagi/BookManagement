@@ -8,24 +8,15 @@ import com.demo.book.exception.OrderDetailsNotFoundException;
 
 public interface IOrderDetailsService {
 
-	List<OrderDetails> getAllOrderDetailss();
+	List<OrderDetails> getAllOrderDetails();
 	
-	OrderDetails getOrderDetailsByOrderId(int orderId) throws OrderDetailsNotFoundException;
+	OrderDetails getOrderDetailsByOrderDetailId(int OrderDetailId) throws OrderDetailsNotFoundException;
 
 	OrderDetails addOrderDetails(OrderDetails orderDetails);
-
-	OrderDetails deleteOrderDetailsByOrderId(String fullName);
 	
 	OrderDetails updateOrderDetails(int orderId,OrderDetails orderDetails );
 
-		List<OrderDetails> getAllOrderDetails();
 
-		OrderDetails deleteOrderDetailsByQuality(int Quality);
-
-		OrderDetails deleteOrderDetailsByQuantity(int quantity);
-
-		OrderDetails getOrderDetailsByQuantity(int quantity) throws OrderDetailsNotFoundException;
-
-
-				
+		OrderDetails deleteOrderDetailsByOrderDetailId(int orderDetailId);
+		
 }

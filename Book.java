@@ -1,6 +1,7 @@
 package com.demo.book.entity;
 
 import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,18 +41,28 @@ public class Book {
 	LocalDate publishDate;
 	LocalDate lastUpdatedOn;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="category_fk")
 	Category category;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy="book",cascade= CascadeType.ALL)
+	Review review1;
+	
+	@JsonIgnore
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="orderDetails_fk")
 	OrderDetails orderDetails;
+	@JsonIgnore
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="review_fk")
+	Review review;
 	
 	// Constructors
 		public Book() {}
 		public Book(int bookId, @NotEmpty
-				@Size(min=3, message="book title should have atleast 3 char") String title, String author, String description, String isbn, double price, LocalDate publishDate, LocalDate lastUpdatedOn ) {
+				@Size(min=3, message="book title should have atleast 3 char") String title, String author, String description, String isbn, double price, LocalDate publishDate, LocalDate lastUpdatedOn ,Review review) {
 			super();
 			this.bookId = bookId;
 			this.title = title;
@@ -61,6 +72,7 @@ public class Book {
 			this.price = price;
 			this.publishDate = publishDate;
 			this.lastUpdatedOn = lastUpdatedOn;
+			this.review = review;
 			
 			}
 		
@@ -130,7 +142,12 @@ public class Book {
 			this.category = category;
 		}
 		
-		
+		public Review getReview() {
+			return review;
+		}
+		public void setReview(Review review) {
+			this.review = review;
+		}
 		public OrderDetails getOrderDetails() {
 			return orderDetails;
 		}
@@ -147,7 +164,7 @@ public class Book {
 		public String toString() {
 			return "Book [bookId=" + bookId + ", title=" + title + ", author=" + author + ", description=" + description
 					+ ", isbn=" + isbn + ", price=" + price + ", publishDate=" + publishDate + ", lastUpdatedOn="
-					+ lastUpdatedOn + ", category=" + category + ", orderDetails=" + orderDetails + "]";
+					+ lastUpdatedOn + ", category=" + category + ",review=" + review +", orderDetails=" + orderDetails + "]";
 		}
 		
 		}

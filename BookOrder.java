@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class BookOrder {
 	@Id
@@ -50,7 +52,7 @@ public class BookOrder {
 	OrderDetails orderDetails;
 	
 	
-	
+	@JsonIgnore
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="category_fk")
 	Category category;
